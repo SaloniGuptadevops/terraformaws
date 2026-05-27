@@ -3,10 +3,16 @@
 *.tfstate
 *.tfstate.*
 .terraform.lock.hcl
-
+*.tfstate.backup
+*.tfstate.lock.info
 # Sensitive files
 *.pem
 *.key
 
 # Terraform variables
-*.tfvars
+*.tfvars*
+*.auto.tfvars
+
+
+# OS files
+.DS_Store
