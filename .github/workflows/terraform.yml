@@ -36,7 +36,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: 1.6.6
+          terraform_version: 1.7.5 # 💡 Upgraded from 1.6.6 to avoid key expiration errors
 
       - name: Terraform Init
         working-directory: ${{ env.TF_WORKING_DIR }}
@@ -55,8 +55,7 @@ jobs:
         id: plan
         working-directory: ${{ env.TF_WORKING_DIR }}
         run: |
-         # terraform plan -no-color -out=tfplan 2>&1 | tee plan_output.txt
-          run: terraform plan -no-color -out=tfplan
+          terraform plan -no-color -out=tfplan 2>&1 | tee plan_output.txt
           echo "PLAN_OUTPUT<<EOF" >> $GITHUB_OUTPUT
           cat plan_output.txt >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -103,7 +102,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: 1.6.0
+          terraform_version: 1.7.5 # 💡 Upgraded from 1.6.0 to fix the openpgp bug
 
       - name: Terraform Init
         working-directory: ${{ env.TF_WORKING_DIR }}
