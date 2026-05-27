@@ -55,7 +55,8 @@ jobs:
         id: plan
         working-directory: ${{ env.TF_WORKING_DIR }}
         run: |
-          terraform plan -no-color -out=tfplan 2>&1 | tee plan_output.txt
+         # terraform plan -no-color -out=tfplan 2>&1 | tee plan_output.txt
+          run: terraform plan -no-color -out=tfplan
           echo "PLAN_OUTPUT<<EOF" >> $GITHUB_OUTPUT
           cat plan_output.txt >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -93,7 +94,7 @@ jobs:
   terraform-apply:
     name: Terraform Apply
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'|| github.event_name == 'workflow_dispatch'
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/master')|| github.event_name == 'workflow_dispatch'
 
     steps:
       - name: Checkout code
