@@ -19,7 +19,7 @@ module "security_group" {
 module "ec2" {
   source            = "../../modules/ec2"
   ami_id            =  "ami-0f5ee92e2d63afc18"
-  instance_type     = "t3.micro"
+  instance_type     = "t2.micro"
   subnet_id         = module.vpc.public_subnet_id
   security_group_id = module.security_group.security_group_id
   environment       = "dev"
